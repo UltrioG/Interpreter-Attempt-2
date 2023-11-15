@@ -1,0 +1,32 @@
+{
+    "tokens": [
+        ["commentInitalizer", ["#"]],
+        ["keySymbols", ["\\", "λ", "%.", ":=", "%^", "%(", "%)"]],
+        ["identifier", ["[%w_]*"]],
+        ["whitespace", ["%s+"]]
+    ],
+    "grammar": {
+        "PROGRAM": [
+            ["Expression", "..."]
+        ],
+        "Expression": [
+            ["Assignment"],
+            ["WriteExpression"]
+        ],
+        "Value": [
+            ["LambdaDefinition"],
+            [["identifier"]]
+        ],
+        "LambdaDefinition": [
+            ["LambdaBinding", "Value"],
+        ],
+        "WriteExpression": [
+            [["keySymbols", "^"], "Value"]
+        ],
+        "LambdaBinding": [
+            [["keySymbols", "\\"], ["identifier"], ["keySymbols", "."]],
+            [["keySymbols", "λ"], ["identifier"], ["keySymbols", "."]],
+        ]
+    }
+    
+}
